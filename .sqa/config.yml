@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/Accenture/AIR:
+      branch: master
+      repo: https://github.com/Accenture/AIR
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/Accenture/AIR git:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-carmine-lionfish.sh
+        container: qc.acc_scaly-charcoal-bobcat
+  QC.Doc:
+    repos:
+      github.com/Accenture/AIR find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gloppy-wisteria-badger.sh
+        container: qc.doc_breezy-persimmon-bulldog
+      github.com/Accenture/AIR git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-champagne-lobster.sh
+        container: qc.doc_wiggy-denim-turkey
+      github.com/Accenture/AIR markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-fuchsia-clam.sh
+        container: qc.doc_squeaky-platinum-cassowary
+  QC.Lic:
+    repos:
+      github.com/Accenture/AIR licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-cerulean-dunker.sh
+        container: qc.lic_woozy-dandelion-tuatara
+  QC.Met:
+    repos:
+      github.com/Accenture/AIR cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-turquoise-crab.sh
+        container: qc.met_cloudy-corn-eel
+  QC.Sec:
+    repos:
+      github.com/Accenture/AIR bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-aquamarine-rottweiler.sh
+        container: qc.sec_scummy-azure-falcon
+  QC.Sty:
+    repos:
+      github.com/Accenture/AIR flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-azure-jellyfish.sh
+        container: qc.sty_ready-malachite-reindeer
+      github.com/Accenture/AIR jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-ochre-butterfly.sh
+        container: qc.sty_shaggy-malachite-rat
+  QC.Ver:
+    repos:
+      github.com/Accenture/AIR get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-xanthic-paradise.sh
+        container: qc.ver_muggy-white-hummingbird
+timeout: 5400
